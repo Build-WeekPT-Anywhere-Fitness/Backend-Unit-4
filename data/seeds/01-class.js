@@ -1,10 +1,10 @@
 exports.seed = function (knex) {
   // Deletes ALL existing entries
-  return knex("class")
+  return knex("classes")
     .del()
     .then(function () {
       // Inserts seed entries
-      return knex("class").insert([
+      return knex("classes").insert([
         {
           id: 1,
           class_name: "Hot yoga with Kato",
