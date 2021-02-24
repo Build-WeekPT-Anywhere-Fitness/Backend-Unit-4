@@ -1,14 +1,14 @@
 exports.seed = function (knex) {
   // Deletes ALL existing entries
   return knex("classes")
-    .del()
+    .truncate()
     .then(function () {
       // Inserts seed entries
       return knex("classes").insert([
         {
           id: 1,
           class_name: "Hot yoga with Kato",
-          class_type: "yoga",
+          class_type: "Yoga",
           intensity: "Intermediate",
           duration: "45 mins",
         },
@@ -22,15 +22,15 @@ exports.seed = function (knex) {
         {
           id: 3,
           class_name: "Zumba with Kyle",
-          class_type: "zumba",
-          intensity: "intermediate",
+          class_type: "Zumba",
+          intensity: "Intermediate",
           duration: "45 mins",
         },
         {
           id: 4,
           class_name: "Pole Dancing with Austin",
-          class_type: "pole",
-          intensity: "hard",
+          class_type: "Pole",
+          intensity: "Hard",
           duration: "45 mins",
         },
       ]);
