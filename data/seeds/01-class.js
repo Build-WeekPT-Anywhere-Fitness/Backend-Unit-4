@@ -11,6 +11,7 @@ exports.seed = function (knex) {
           class_type: "Yoga",
           intensity: "Intermediate",
           duration: "45 mins",
+          date: "",
         },
         {
           id: 2,
@@ -18,6 +19,7 @@ exports.seed = function (knex) {
           class_type: "High intensity interval training",
           intensity: "Hard",
           duration: "45 mins",
+          date: "",
         },
         {
           id: 3,
@@ -25,6 +27,7 @@ exports.seed = function (knex) {
           class_type: "Zumba",
           intensity: "Intermediate",
           duration: "45 mins",
+          date: "",
         },
         {
           id: 4,
@@ -32,6 +35,7 @@ exports.seed = function (knex) {
           class_type: "Pole",
           intensity: "Hard",
           duration: "45 mins",
+          date: "",
         },
       ]);
     });

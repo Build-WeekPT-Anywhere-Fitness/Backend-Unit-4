@@ -1,6 +1,5 @@
 const router = require("express").Router();
 
-const { route } = require("../server");
 const Classes = require("./classes-model");
 
 router.get("/", async (req, res) => {
