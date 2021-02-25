@@ -12,6 +12,7 @@ exports.up = function (knex) {
       tbl.increments("id");
       tbl.text("username").notNullable().unique();
       tbl.text("email").notNullable().unique();
+      tbl.text("name", 128).notNullable();
     })
     .createTable("roles", (tbl) => {
       tbl.increments("id");
@@ -20,5 +21,8 @@ exports.up = function (knex) {
 };
 
 exports.down = function (knex) {
-  return knex.schema.dropTableIfExists("classes").dropTableIfExists("users");
+  return knex.schema
+    .dropTableIfExists("classes")
+    .dropTableIfExists("roles")
+    .dropTableIfExists("users");
 };
