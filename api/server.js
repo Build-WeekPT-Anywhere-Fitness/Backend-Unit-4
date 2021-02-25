@@ -8,7 +8,7 @@ const server = express();
 
 server.use(cors());
 server.use(helmet());
-server.server.use(express.json());
+server.use(express.json());
 server.use("/api/classes", ClassesRouter);
 
 module.exports = server;
