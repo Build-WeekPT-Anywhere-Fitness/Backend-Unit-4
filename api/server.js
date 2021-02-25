@@ -13,6 +13,6 @@ server.use(helmet());
 server.use(express.json());
 server.use("/api/classes", ClassesRouter);
 server.use("/api/users", UsersRouter);
-server.use("/register", AuthRouter);
+server.use("/api/users", AuthRouter);
 
 module.exports = server;

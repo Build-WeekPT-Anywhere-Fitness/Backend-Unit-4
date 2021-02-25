@@ -6,7 +6,7 @@ const secrets = require("../config/secrets");
 const Users = require("../users/users-model");
 const { isValid } = require("../users/users-service");
 
-router.post("/", async (req, res) => {
+router.post("/register", async (req, res) => {
   const user = req.body;
 
   if (user) {
@@ -32,5 +32,45 @@ router.post("/", async (req, res) => {
     });
   }
 });
+
+router.post("/login", (req, res) => {
+  const { username, password } = req.body;
+
+  //fix isValid function and insert here in conditional statement
+
+  if (req.body) {
+    Users.findBy({ username: username })
+      .then(([user]) => {
+        if (user && bcryptjs.compareSync(password, user.password)) {
+          const token = generateToken(user);
+          res.status(200).json({
+            message: `${user.username} successfully logged in`,
+            token,
+          });
+        } else {
+          res.status(401).json({ message: "Invalid credentials" });
+        }
+      })
+      .catch((err) => {
+        res.status(500).json({ message: err.message });
+      });
+  } else {
+    res.status(400).json({ message: "Please provide a username and password" });
+  }
+});
+
+function generateToken(user) {
+  const payload = {
+    subject: user.id,
+    username: user.username,
+    //need to add role
+  };
+  const secret = secrets.jwtSecret;
+  const options = {
+    expiresIn: "1hr",
+  };
+
+  return jwt.sign(payload, secret, options);
+}
 
 module.exports = router;
