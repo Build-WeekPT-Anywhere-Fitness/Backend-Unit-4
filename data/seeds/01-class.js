@@ -12,6 +12,7 @@ exports.seed = function (knex) {
           intensity: "Intermediate",
           duration: "45 mins",
           date: "",
+          max_students: 5,
         },
         {
           id: 2,
@@ -20,6 +21,7 @@ exports.seed = function (knex) {
           intensity: "Hard",
           duration: "45 mins",
           date: "",
+          max_students: 5,
         },
         {
           id: 3,
@@ -28,6 +30,7 @@ exports.seed = function (knex) {
           intensity: "Intermediate",
           duration: "45 mins",
           date: "",
+          max_students: 5,
         },
         {
           id: 4,
@@ -36,6 +39,7 @@ exports.seed = function (knex) {
           intensity: "Hard",
           duration: "45 mins",
           date: "",
+          max_students: 5,
         },
       ]);
     });

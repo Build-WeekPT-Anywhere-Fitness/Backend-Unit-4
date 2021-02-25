@@ -7,16 +7,18 @@ exports.up = function (knex) {
       tbl.text("intensity");
       tbl.text("duration");
       tbl.date("date").notNullable();
+      tbl.integer("max_students").unsigned().defaultTo(5);
+    })
+    .createTable("roles", (tbl) => {
+      tbl.increments("id");
+      tbl.text("role").notNullable();
     })
     .createTable("users", (tbl) => {
       tbl.increments("id");
       tbl.text("username").notNullable().unique();
       tbl.text("email").notNullable().unique();
       tbl.text("name", 128).notNullable();
-    })
-    .createTable("roles", (tbl) => {
-      tbl.increments("id");
-      tbl.text("role").notNullable();
+      tbl.text("password").notNullable().unique();
     });
 };
 
