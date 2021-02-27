@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 const Classes = require("./classes-model");
+const restricted = require("../auth/restricted-middleware");
 
 router.get("/", async (req, res) => {
   try {
@@ -25,7 +26,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/add-class", restricted, async (req, res) => {
   const classBody = req.body;
 
   if (!classBody.class_name || !classBody.class_type || !classBody.date) {

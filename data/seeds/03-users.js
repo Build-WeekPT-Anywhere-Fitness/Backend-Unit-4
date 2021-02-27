@@ -11,7 +11,7 @@ exports.seed = function (knex) {
           username: "Kato",
           email: "Kato@fitness.com",
           password: "3",
-          instructor: false,
+          role: "client",
         },
         {
           id: 2,
@@ -19,7 +19,7 @@ exports.seed = function (knex) {
           username: "Danielle",
           email: "danielle@fitness.com",
           password: "y",
-          instructor: false,
+          role: "client",
         },
         {
           id: 3,
@@ -27,7 +27,7 @@ exports.seed = function (knex) {
           username: "Austin",
           email: "austin@fitness.com",
           password: "e",
-          instructor: true,
+          role: "instructor",
         },
       ]);
     });

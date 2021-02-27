@@ -18,7 +18,7 @@ router.post("/register", async (req, res) => {
 
     Users.add(user)
       .then((user) => {
-        res.status(201).json({ data: user });
+        res.status(201).json(user);
       })
       .catch((err) => {
         res.status(500).json({
@@ -63,7 +63,7 @@ function generateToken(user) {
   const payload = {
     subject: user.id,
     username: user.username,
-    //need to add role
+    role: user.instructor,
   };
   const secret = secrets.jwtSecret;
   const options = {
