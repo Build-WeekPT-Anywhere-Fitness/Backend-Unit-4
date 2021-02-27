@@ -3,6 +3,7 @@ const db = require("../../data/db-config");
 module.exports = {
   find,
   add,
+  update,
 };
 
 function find() {
@@ -20,3 +21,5 @@ function add(location) {
       return findById(ids[0]);
     });
 }
+
+function update(id, changes) {}
