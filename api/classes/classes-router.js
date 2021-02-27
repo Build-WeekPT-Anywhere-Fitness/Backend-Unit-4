@@ -13,7 +13,7 @@ router.get("/", restricted, async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", restricted, async (req, res) => {
   const { id } = req.params;
   const classById = await Classes.findById(id);
   if (!classById) {

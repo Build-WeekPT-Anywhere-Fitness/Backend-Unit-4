@@ -2,6 +2,7 @@ const router = require("express").Router();
 
 const Locations = require("./locations-model");
 const restricted = require("../auth/restricted-middleware");
+const checkRole = require("../auth/check-role-middleware");
 
 router.get("/", async (req, res) => {
   try {
@@ -12,7 +13,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", restricted, async (req, res) => {
+router.post("/", restricted, checkRole("true"), async (req, res) => {
   const location = req.body;
 
   if (!location.add_1 || !location.city) {
@@ -29,7 +30,7 @@ router.post("/", restricted, async (req, res) => {
   }
 });
 
-router.put("/:id", restricted, async (req, res) => {
+router.put("/:id", restricted, checkRole("true"), async (req, res) => {
   const { id } = req.params;
   const changes = req.body;
   if (!changes.add_1 || !changes.city) {
@@ -48,7 +49,7 @@ router.put("/:id", restricted, async (req, res) => {
   }
 });
 
-router.delete("/:id", restricted, (req, res) => {
+router.delete("/:id", restricted, checkRole("true"), (req, res) => {
   const { id } = req.params;
   Locations.remove(id)
     .then((deleted) => {
