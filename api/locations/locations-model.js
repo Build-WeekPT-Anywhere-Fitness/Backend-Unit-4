@@ -28,5 +28,5 @@ function update(id, changes) {
 }
 
 function remove(id) {
-  return db("location").where({ id }).del();
+  return db("location").where("id", Number(id)).del();
 }
