@@ -11,4 +11,21 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+  const location = req.body;
+
+  if (!location.add_1 || !location.city) {
+    res.status(401).json({
+      message: "Please include an address and city to add a new location",
+    });
+  } else {
+    try {
+      const newLocation = await Locations.add(location);
+      res.status(201).json(newLocation);
+    } catch (err) {
+      res.status(500).json({ message: "server error" });
+    }
+  }
+});
+
 module.exports = router;
