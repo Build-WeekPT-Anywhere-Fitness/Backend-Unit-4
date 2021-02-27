@@ -19,6 +19,9 @@ exports.up = function (knex) {
       tbl.increments();
       tbl.text("class_name", 128).notNullable();
       tbl.text("class_type").notNullable();
+      tbl.text("description", 250);
+      tbl.text("img_url");
+      tbl.text("thumbnail_url");
       tbl.text("intensity");
       tbl.datetime("start_time").notNullable();
       tbl.text("duration");

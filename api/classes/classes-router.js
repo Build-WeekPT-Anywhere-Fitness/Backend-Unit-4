@@ -34,11 +34,13 @@ router.post("/add-class", restricted, checkRole("true"), async (req, res) => {
     !classBody.class_name ||
     !classBody.class_type ||
     !classBody.date ||
-    !classBody.start_time
+    !classBody.start_time ||
+    !classBody.location_id
   ) {
-    res
-      .status(404)
-      .json({ message: "A class name, type and date are required" });
+    res.status(404).json({
+      message:
+        "A class name, type and date & location are required are required",
+    });
   } else {
     try {
       const newClass = await Classes.add(classBody);
