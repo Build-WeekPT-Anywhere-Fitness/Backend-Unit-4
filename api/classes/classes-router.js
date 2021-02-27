@@ -4,7 +4,7 @@ const Classes = require("./classes-model");
 const restricted = require("../auth/restricted-middleware");
 const checkRole = require("../auth/check-role-middleware");
 
-router.get("/", restricted, checkRole("true"), async (req, res) => {
+router.get("/", restricted, async (req, res) => {
   try {
     const classes = await Classes.find();
     res.status(200).json(classes);
@@ -27,7 +27,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/add-class", restricted, checkRole("true"), async (req, res) => {
   const classBody = req.body;
 
   if (
