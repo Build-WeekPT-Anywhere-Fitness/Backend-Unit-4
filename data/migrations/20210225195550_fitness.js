@@ -13,7 +13,7 @@ exports.up = function (knex) {
       tbl.text("email").notNullable().unique();
       tbl.text("name", 128).notNullable();
       tbl.text("password").notNullable().unique();
-      tbl.text("role").notNullable();
+      tbl.boolean("instructor").notNullable();
     })
     .createTable("classes", (tbl) => {
       tbl.increments();

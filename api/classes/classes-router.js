@@ -2,8 +2,9 @@ const router = require("express").Router();
 
 const Classes = require("./classes-model");
 const restricted = require("../auth/restricted-middleware");
+const checkRole = require("../auth/check-role-middleware");
 
-router.get("/", restricted, async (req, res) => {
+router.get("/", restricted, checkRole("true"), async (req, res) => {
   try {
     const classes = await Classes.find();
     res.status(200).json(classes);
