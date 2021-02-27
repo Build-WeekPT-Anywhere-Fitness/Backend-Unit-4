@@ -48,18 +48,19 @@ router.put("/:id", restricted, async (req, res) => {
   }
 });
 
-router.delete("/:id", restricted, async (req, res) => {
+router.delete("/:id", restricted, (req, res) => {
   const { id } = req.params;
-  const deleted = await Locations.remove(id);
-  if (deleted) {
-    try {
-      res.status(204).json({ removed: deleted });
-    } catch (err) {
-      res.status(500).json({ message: "server error" });
-    }
-  } else {
-    res.status(404).json({ message: "Could not delete location at this time" });
-  }
+  Locations.remove(id)
+    .then((deleted) => {
+      if (deleted) {
+        res.status(204).json({ removed: deleted });
+      } else {
+        res.status(404).json({ message: "could not find address by that id" });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({ message: "server error", error: err.message });
+    });
 });
 
 module.exports = router;
