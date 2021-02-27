@@ -26,7 +26,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", restricted, async (req, res) => {
   const classBody = req.body;
 
   if (
