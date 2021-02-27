@@ -48,4 +48,18 @@ router.put("/:id", restricted, async (req, res) => {
   }
 });
 
+router.delete("/:id", restricted, async (req, res) => {
+  const { id } = req.params;
+  const deleted = await Locations.remove(id);
+  if (deleted) {
+    try {
+      res.status(204).json({ removed: deleted });
+    } catch (err) {
+      res.status(500).json({ message: "server error" });
+    }
+  } else {
+    res.status(404).json({ message: "Could not delete location at this time" });
+  }
+});
+
 module.exports = router;

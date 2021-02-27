@@ -4,6 +4,7 @@ module.exports = {
   find,
   add,
   update,
+  remove,
 };
 
 function find() {
@@ -24,4 +25,8 @@ function add(location) {
 
 function update(id, changes) {
   return db("location").where("id", Number(id)).update(changes);
+}
+
+function remove(id) {
+  return db("location").where({ id }).del();
 }
