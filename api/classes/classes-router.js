@@ -3,7 +3,7 @@ const router = require("express").Router();
 const Classes = require("./classes-model");
 const restricted = require("../auth/restricted-middleware");
 
-router.get("/", async (req, res) => {
+router.get("/", restricted, async (req, res) => {
   try {
     const classes = await Classes.find();
     res.status(200).json(classes);
@@ -29,7 +29,12 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   const classBody = req.body;
 
-  if (!classBody.class_name || !classBody.class_type || !classBody.date) {
+  if (
+    !classBody.class_name ||
+    !classBody.class_type ||
+    !classBody.date ||
+    !classBody.start_time
+  ) {
     res
       .status(404)
       .json({ message: "A class name, type and date are required" });
