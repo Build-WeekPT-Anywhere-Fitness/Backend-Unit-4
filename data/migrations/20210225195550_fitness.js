@@ -1,14 +1,14 @@
 exports.up = function (knex) {
   return knex.schema
     .createTable("location", (tbl) => {
-      tbl.increments("id");
+      tbl.increments();
       tbl.text("location_name", 128);
       tbl.text("add_1").notNullable();
       tbl.text("add_2");
       tbl.text("city").notNullable();
     })
     .createTable("users", (tbl) => {
-      tbl.increments("id");
+      tbl.increments();
       tbl.text("username").notNullable().unique();
       tbl.text("email").notNullable().unique();
       tbl.text("name", 128).notNullable();
@@ -16,7 +16,7 @@ exports.up = function (knex) {
       tbl.boolean("instructor").defaultTo(false);
     })
     .createTable("classes", (tbl) => {
-      tbl.increments("id");
+      tbl.increments();
       tbl.text("class_name", 128).notNullable();
       tbl.text("class_type").notNullable();
       tbl.text("intensity");
@@ -25,14 +25,14 @@ exports.up = function (knex) {
       tbl.datetime("date").notNullable();
       tbl.integer("max_students").unsigned().defaultTo(5);
       tbl.integer("currently_enrolled").unsigned().defaultTo(0);
-      //   tbl
-      //     .integer("location_id")
-      //     .references("id")
-      //     .inTable("location")
-      //     .onUpdate("CASCADE")
-      //     .OnDelete("CASCADE")
-      //     .unsigned()
-      //     .notNullable();
+      tbl
+        .integer("location_id")
+        .references("id")
+        .inTable("location")
+        .onUpdate("CASCADE")
+        .onDelete("CASCADE")
+        .unsigned()
+        .notNullable();
     });
 };
 

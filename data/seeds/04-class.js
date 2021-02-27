@@ -14,7 +14,7 @@ exports.seed = function (knex) {
           start_time: "5pm",
           date: "Feb 30",
           max_students: 5,
-          // location: "",
+          location_id: 2,
         },
         {
           id: 2,
@@ -25,7 +25,7 @@ exports.seed = function (knex) {
           start_time: "5pm",
           date: "Feb 30",
           max_students: 5,
-          // location: "",
+          location_id: 1,
         },
         {
           id: 3,
@@ -36,7 +36,7 @@ exports.seed = function (knex) {
           start_time: "5pm",
           date: "Feb 30",
           max_students: 5,
-          // location: "",
+          location_id: 2,
         },
         {
           id: 4,
@@ -47,7 +47,7 @@ exports.seed = function (knex) {
           start_time: "5pm",
           date: "Feb 30",
           max_students: 5,
-          // location: "",
+          location_id: 3,
         },
       ]);
     });
