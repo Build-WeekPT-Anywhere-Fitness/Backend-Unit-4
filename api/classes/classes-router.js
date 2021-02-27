@@ -26,7 +26,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/add-class", restricted, async (req, res) => {
+router.post("/add-class", async (req, res) => {
   const classBody = req.body;
 
   if (!classBody.class_name || !classBody.class_type || !classBody.date) {
