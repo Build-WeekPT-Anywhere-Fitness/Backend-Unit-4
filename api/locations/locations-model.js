@@ -22,4 +22,6 @@ function add(location) {
     });
 }
 
-function update(id, changes) {}
+function update(id, changes) {
+  return db("location").where("id", Number(id)).update(changes);
+}
