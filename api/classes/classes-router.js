@@ -54,13 +54,30 @@ router.post("/", restricted, async (req, res) => {
   }
 });
 
-// router.get("/class-location", async (req, res) => {
-//   const classLocations = await Classes.getClassLocation();
-//   try {
-//     res.status(200).json(classLocations);
-//   } catch (err) {
-//     res.status(500).json({ message: "server error" });
-//   }
-// });
+router.put("/:id", async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  const change = req.body;
+  console.log(change);
+
+  if (
+    !change.class_name ||
+    !change.class_type ||
+    !change.date ||
+    !change.start_time
+  ) {
+    res.status(404).json({
+      message:
+        "Please provide class name, type, date and start time to edit this class",
+    });
+  } else {
+    try {
+      const editedClass = await Classes.edit(change, id);
+      res.status(202).json(editedClass);
+    } catch (err) {
+      res.status(500).json({ message: "server error", error: err.message });
+    }
+  }
+});
 
 module.exports = router;

@@ -35,7 +35,7 @@ router.get("/:id", async (req, res) => {
 router.post("/:id/add_class", async (req, res) => {
   const { id } = req.params;
   const addedClass = { ...req.body, user_id: id }; // <--
-  console.log(addedClass);
+
   if (
     !addedClass.class_name ||
     !addedClass.class_type ||

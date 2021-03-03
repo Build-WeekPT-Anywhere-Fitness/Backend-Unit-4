@@ -35,4 +35,6 @@ async function add(newClass) {
   return findById(id);
 }
 
-async function edit(change, id) {}
+async function edit(change, id) {
+  return db("classes").where("id", Number(id)).update(change);
+}
