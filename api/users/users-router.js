@@ -49,7 +49,7 @@ router.post("/:id/add_class", async (req, res) => {
   } else {
     try {
       const newClass = await Classes.add(addedClass);
-      res.status(201).json({ data: newClass });
+      res.status(201).json(newClass);
     } catch (err) {
       res.status(500).json({ message: "server error", error: err.message });
     }

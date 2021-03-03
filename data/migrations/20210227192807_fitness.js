@@ -23,6 +23,7 @@ exports.up = function (knex) {
         .references("id")
         .inTable("users")
         .unsigned()
+        .notNullable()
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
     })
@@ -40,24 +41,24 @@ exports.up = function (knex) {
         .unsigned()
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
-    })
-    .createTable("class_location", (tbl) => {
-      tbl
-        .integer("class_id")
-        .references("id")
-        .inTable("class")
-        .onUpdate("CASCADE")
-        .onDelete("CASCADE")
-        .unsigned();
-      tbl
-        .integer("location_id")
-        .references("id")
-        .inTable("location")
-        .onUpdate("CASCADE")
-        .onDelete("CASCADE")
-        .unsigned();
-      tbl.primary(["class_id", "location_id"]);
     });
+  // .createTable("class_location", (tbl) => {
+  //   tbl
+  //     .integer("class_id")
+  //     .references("id")
+  //     .inTable("class")
+  //     .onUpdate("CASCADE")
+  //     .onDelete("CASCADE")
+  //     .unsigned();
+  //   tbl
+  //     .integer("location_id")
+  //     .references("id")
+  //     .inTable("location")
+  //     .onUpdate("CASCADE")
+  //     .onDelete("CASCADE")
+  //     .unsigned();
+  //   tbl.primary(["class_id", "location_id"]);
+  // });
 };
 
 exports.down = function (knex) {

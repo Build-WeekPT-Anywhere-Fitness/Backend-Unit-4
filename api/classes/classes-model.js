@@ -5,6 +5,7 @@ module.exports = {
   findById,
   add,
   edit,
+  remove,
 };
 
 // function find() {
@@ -37,4 +38,8 @@ async function add(newClass) {
 
 async function edit(change, id) {
   return db("classes").where("id", Number(id)).update(change);
+}
+
+async function remove(id) {
+  return db("classes").where("id", Number(id)).del();
 }
