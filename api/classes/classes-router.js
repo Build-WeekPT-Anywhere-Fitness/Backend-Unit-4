@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
-const Users = require("../users/users-model");
 const Classes = require("./classes-model");
+const Locations = require("../locations/locations-model");
 const restricted = require("../auth/restricted-middleware");
 const checkRole = require("../auth/check-role-middleware");
 
@@ -92,6 +92,23 @@ router.delete("/:id", async (req, res) => {
     }
   } catch (err) {
     res.status(500).json({ message: "Server error", error: err.message });
+  }
+});
+
+router.post("/:id/add_location", async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  const location = { ...req.body, class_id: Number(id) };
+  console.log(location);
+  if (!location.add_1 || !location.city) {
+    res.status(401).json({ message: "Please provide an address and city" });
+  } else {
+    try {
+      const newLocation = await Locations.add(location);
+      res.status(201).json(newLocation);
+    } catch (err) {
+      res.status(500).json({ message: "Server error", error: err.message });
+    }
   }
 });
 

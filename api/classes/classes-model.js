@@ -8,21 +8,6 @@ module.exports = {
   remove,
 };
 
-// function find() {
-//   return db("classes as c")
-//     .join("location as l", "l.id", "c.location_id")
-//     .join("users as u", "u.id", "c.id")
-//     .select(
-//       "c.*",
-//       "l.location_name",
-//       "l.add_1",
-//       "l.add_2",
-//       "l.city",
-//       "u.name as trainer",
-//       "u.email"
-//     );
-// }
-
 function find() {
   return db("classes");
 }
@@ -43,3 +28,5 @@ async function edit(change, id) {
 async function remove(id) {
   return db("classes").where("id", Number(id)).del();
 }
+
+// async function addLocation(id, location) {}

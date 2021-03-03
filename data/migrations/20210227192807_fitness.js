@@ -37,7 +37,6 @@ exports.up = function (knex) {
         .integer("class_id")
         .references("id")
         .inTable("classes")
-        .notNullable()
         .unsigned()
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
