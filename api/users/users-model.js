@@ -5,6 +5,7 @@ module.exports = {
   findById,
   add,
   findBy,
+  getClassByUserId,
 };
 
 function find() {
@@ -22,4 +23,8 @@ async function add(user) {
 
 function findBy(filter) {
   return db("users").where(filter);
+}
+
+function getClassByUserId(userId) {
+  return db("classes").where({ userId });
 }

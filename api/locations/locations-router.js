@@ -15,6 +15,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", restricted, checkRole("true"), async (req, res) => {
   const location = req.body;
+  console.log(location);
 
   if (!location.add_1 || !location.city) {
     res.status(401).json({
@@ -27,6 +28,21 @@ router.post("/", restricted, checkRole("true"), async (req, res) => {
     } catch (err) {
       res.status(500).json({ message: "server error" });
     }
+  }
+});
+
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+
+  const location = await Locations.findById(id);
+  try {
+    if (location) {
+      res.status(200).json(location);
+    } else {
+      res.status(404).json({ message: "id not found" });
+    }
+  } catch (err) {
+    res.status(500).json({ message: "server error" });
   }
 });
 
